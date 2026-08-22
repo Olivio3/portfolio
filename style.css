@@ -392,50 +392,125 @@ body {
 @media (max-width: 900px) {
     .hero {
         flex-direction: column;
-        justify-content: center;
-    }
-
-    .hero-title {
-        font-size: clamp(3rem, 12vw, 8rem);
-        bottom: 5vh;
-        z-index: 20;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 10vh;
+        height: auto;
+        min-height: 100svh;
+        overflow-y: auto;
     }
 
     .interactive-area {
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         padding: 0;
-        margin-top: -10vh;
+        margin-top: 0;
+        width: 100%;
     }
 
     .call-to-action {
-        margin-right: 0;
-        margin-bottom: 0;
-        top: 20px;
-        left: -80px;
+        position: absolute;
+        margin: 0;
+        top: -50px;
+        left: 20px;
+        z-index: 50;
     }
 
     .cta-arrow {
-        transform: rotate(45deg);
+        transform: scale(0.7) rotate(20deg);
+        top: 50px;
+        right: -160px;
+    }
+
+    .hero-title {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        font-size: clamp(3.5rem, 10vw, 6rem);
+        z-index: 20;
+        text-align: center;
+        width: 100%;
+        transform: none;
+        animation: fadeIn 1.5s ease forwards;
+    }
+    
+    .smartphone {
+        transform: translateY(0);
+        animation: fadeIn 1s ease forwards;
+    }
+    
+    .smartphone:hover {
+        transform: translateY(-5px);
     }
 }
 
 @media (max-width: 480px) {
-    .hero-title {
-        font-size: 3.5rem;
+    .hero {
+        padding-top: 8vh;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .smartphone {
-        width: 290px;
-        height: 600px;
+        width: 270px;
+        height: 550px;
         padding: 10px;
+        border-radius: 35px;
+    }
+    
+    .phone-notch {
+        width: 90px;
+        height: 20px;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+    }
+
+    .album-art-container {
+        margin-bottom: 20px;
+    }
+    
+    .track-info {
+        margin-bottom: 15px;
+    }
+    
+    .progress-container {
+        margin-bottom: 15px;
+    }
+    
+    .controls {
+        margin-bottom: 15px;
+    }
+    
+    .device-connect {
+        margin-bottom: 15px;
+    }
+
+    .play-pause {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .lyrics-card {
+        padding: 10px 15px;
     }
 
     .call-to-action {
-        left: -50px;
+        top: -60px;
+        left: -10px;
     }
 
-    .cta-text {
-        font-size: 2.5rem;
+    .cta-arrow {
+        transform: scale(0.55) rotate(35deg);
+        top: 20px;
+        right: -140px;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
 }
