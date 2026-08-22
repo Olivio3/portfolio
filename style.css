@@ -409,18 +409,26 @@ body {
         width: 100%;
     }
 
+    .smartphone {
+        order: 1;
+        transform: translateY(0);
+        animation: fadeIn 1s ease forwards;
+    }
+
     .call-to-action {
-        position: absolute;
+        order: 2;
+        position: relative;
         margin: 0;
-        top: -50px;
-        left: 20px;
+        margin-top: 40px;
+        top: 0;
+        left: 0;
         z-index: 50;
     }
 
     .cta-arrow {
-        transform: scale(0.7) rotate(20deg);
-        top: 50px;
-        right: -160px;
+        transform: scale(0.6) rotate(-110deg) scaleX(-1);
+        top: -100px;
+        right: 0px;
     }
 
     .hero-title {
@@ -435,11 +443,6 @@ body {
         width: 100%;
         transform: none;
         animation: fadeIn 1.5s ease forwards;
-    }
-    
-    .smartphone {
-        transform: translateY(0);
-        animation: fadeIn 1s ease forwards;
     }
     
     .smartphone:hover {
@@ -498,14 +501,15 @@ body {
     }
 
     .call-to-action {
-        top: -60px;
-        left: -10px;
+        top: 0;
+        left: 0;
+        margin-top: 15px;
     }
 
     .cta-arrow {
-        transform: scale(0.55) rotate(35deg);
-        top: 20px;
-        right: -140px;
+        transform: scale(0.5) rotate(-110deg) scaleX(-1);
+        top: -110px;
+        right: 10px;
     }
 
     .hero-title {
