@@ -37,12 +37,7 @@ body {
 }
 
 /* Título */
-.hero-title {
-    font-family: var(--font-heading);
-    font-size: clamp(4rem, 11vw, 15rem);
-    font-weight: 400;
-    letter-spacing: 2px;
-    line-height: 1;
+.title-wrapper {
     position: absolute;
     bottom: 8vh;
     left: 4%;
@@ -50,6 +45,24 @@ body {
     animation: fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     opacity: 0;
     transform: translateY(30px);
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(4rem, 11vw, 15rem);
+    font-weight: 400;
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.hero-subtitle {
+    font-family: var(--font-ui);
+    font-size: clamp(0.9rem, 1.5vw, 1.5rem);
+    color: var(--color-text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    font-weight: 600;
 }
 
 /* Interactive Area */
@@ -322,15 +335,14 @@ body {
 
 .lyrics-card {
     background: #c54a1d;
-    border-radius: 12px;
-    padding: 15px;
+    border-radius: 12px 12px 0 0;
+    padding: 15px 15px 35px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-weight: 700;
     font-size: 14px;
-    margin-top: auto;
-    margin-bottom: 10px;
+    margin: auto 0 -20px 0;
 }
 
 .more-lyrics {
@@ -401,20 +413,31 @@ body {
         overflow-x: hidden;
     }
 
-    .hero-title {
-        writing-mode: horizontal-tb;
-        transform: none;
+    .title-wrapper {
         position: relative;
         bottom: auto;
         left: auto;
-        margin: 0;
         margin-bottom: 5vh;
-        font-size: clamp(3rem, 12vw, 6rem);
-        line-height: 1;
         z-index: 20;
         text-align: center;
         width: 100%;
         animation: fadeIn 1.5s ease forwards;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-title {
+        writing-mode: horizontal-tb;
+        transform: none;
+        margin: 0;
+        font-size: clamp(3rem, 12vw, 6rem);
+        line-height: 1;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-top: 5px;
     }
 
     .interactive-area {
@@ -467,7 +490,10 @@ body {
 
     .hero-title {
         font-size: clamp(2.5rem, 13vw, 4rem);
-        margin-right: 0;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.85rem;
     }
 
     .interactive-area {
