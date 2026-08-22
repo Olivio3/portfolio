@@ -56,7 +56,7 @@ body {
 }
 
 .hero-subtitle {
-    font-family: var(--font-ui);
+    font-family: var(--font-heading);
     font-size: clamp(0.9rem, 1.5vw, 1.5rem);
     color: var(--color-text-muted);
     letter-spacing: 3px;
