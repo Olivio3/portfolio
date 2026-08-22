@@ -442,10 +442,17 @@ body {
         z-index: 50;
     }
 
+    .cta-text {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        margin: 0;
+    }
+
     .cta-arrow {
-        transform: scale(0.6) rotate(15deg);
-        top: 30px;
-        right: -100px;
+        position: absolute;
+        transform: scale(0.6) rotate(45deg);
+        top: 40px;
+        right: -80px;
     }
     
     .smartphone:hover {
@@ -515,16 +522,20 @@ body {
         margin-bottom: 0;
         margin-right: 0;
         top: 35%;
-        left: -15px;
+        left: -10px;
     }
     
     .cta-text {
-        font-size: 2.2rem;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 2rem;
+        margin: 0;
     }
 
     .cta-arrow {
-        transform: scale(0.45) rotate(15deg);
-        top: 15px;
-        right: -90px;
+        position: absolute;
+        transform: scale(0.4) rotate(45deg);
+        top: 50px;
+        right: -70px;
     }
 }
