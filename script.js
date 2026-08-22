@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Setup Audio
     const audio = new Audio('/super.mp3');
+    audio.preload = 'none'; // Impede que o áudio seja baixado antes do usuário dar Play
     
     function formatTime(seconds) {
         const m = Math.floor(seconds / 60);
