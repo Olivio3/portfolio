@@ -73,4 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         updateProgressUI();
     });
+
+    const prevBtn = document.querySelector('.prev');
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            audio.currentTime = 0;
+            timeSeconds = 0;
+            progress = 0;
+            updateProgressUI();
+        });
+    }
 });
