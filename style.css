@@ -391,58 +391,60 @@ body {
 
 @media (max-width: 900px) {
     .hero {
-        flex-direction: column;
-        justify-content: flex-start;
+        flex-direction: row;
+        justify-content: center;
         align-items: center;
-        padding-top: 10vh;
+        padding: 5vh 5%;
         height: auto;
         min-height: 100svh;
         overflow-y: auto;
     }
 
+    .hero-title {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        position: relative;
+        bottom: auto;
+        left: auto;
+        margin: 0;
+        margin-right: 20px;
+        font-size: clamp(3.5rem, 10vw, 6rem);
+        z-index: 20;
+        text-align: center;
+        width: auto;
+        animation: fadeIn 1.5s ease forwards;
+    }
+
     .interactive-area {
+        flex: 1;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 0;
-        margin-top: 0;
-        width: 100%;
+        margin: 0;
+    }
+
+    .call-to-action {
+        order: 1;
+        position: relative;
+        margin: 0;
+        margin-bottom: 20px;
+        top: 0;
+        left: -30px;
+        z-index: 50;
     }
 
     .smartphone {
-        order: 1;
+        order: 2;
         transform: translateY(0);
         animation: fadeIn 1s ease forwards;
     }
 
-    .call-to-action {
-        order: 2;
-        position: relative;
-        margin: 0;
-        margin-top: 40px;
-        top: 0;
-        left: 0;
-        z-index: 50;
-    }
-
     .cta-arrow {
-        transform: scale(0.65) rotate(-120deg);
-        top: -120px;
-        right: -30px;
-    }
-
-    .hero-title {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        margin-top: 40px;
-        margin-bottom: 40px;
-        font-size: clamp(3.5rem, 10vw, 6rem);
-        z-index: 20;
-        text-align: center;
-        width: 100%;
-        transform: none;
-        animation: fadeIn 1.5s ease forwards;
+        transform: scale(0.65) rotate(35deg);
+        top: 30px;
+        right: -130px;
     }
     
     .smartphone:hover {
@@ -452,9 +454,12 @@ body {
 
 @media (max-width: 480px) {
     .hero {
-        padding-top: 8vh;
-        padding-left: 20px;
-        padding-right: 20px;
+        padding: 5vh 15px;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        margin-right: 15px;
     }
 
     .smartphone {
@@ -501,20 +506,13 @@ body {
     }
 
     .call-to-action {
-        top: 0;
-        left: 0;
-        margin-top: 15px;
+        margin-bottom: 15px;
+        left: -20px;
     }
 
     .cta-arrow {
-        transform: scale(0.55) rotate(-120deg);
-        top: -110px;
-        right: -30px;
-    }
-
-    .hero-title {
-        font-size: 3rem;
-        margin-top: 30px;
-        margin-bottom: 30px;
+        transform: scale(0.55) rotate(45deg);
+        top: 20px;
+        right: -120px;
     }
 }
