@@ -392,12 +392,11 @@ body {
 @media (max-width: 900px) {
     .hero {
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        padding: 5vh 5%;
-        height: auto;
-        min-height: 100svh;
-        overflow-y: auto;
+        padding: 0 5%;
+        height: 100vh;
+        overflow: hidden;
     }
 
     .hero-title {
@@ -407,8 +406,8 @@ body {
         bottom: auto;
         left: auto;
         margin: 0;
-        margin-right: 20px;
-        font-size: clamp(3.5rem, 10vw, 6rem);
+        font-size: clamp(3rem, 8vh, 5rem);
+        line-height: 1;
         z-index: 20;
         text-align: center;
         width: auto;
@@ -420,7 +419,7 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end;
         padding: 0;
         margin: 0;
     }
@@ -429,9 +428,10 @@ body {
         order: 1;
         position: relative;
         margin: 0;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        margin-right: 20px;
         top: 0;
-        left: -30px;
+        left: 0;
         z-index: 50;
     }
 
@@ -442,9 +442,9 @@ body {
     }
 
     .cta-arrow {
-        transform: scale(0.65) rotate(35deg);
-        top: 30px;
-        right: -130px;
+        transform: scale(0.5) rotate(45deg);
+        top: 20px;
+        right: -80px;
     }
     
     .smartphone:hover {
@@ -454,18 +454,20 @@ body {
 
 @media (max-width: 480px) {
     .hero {
-        padding: 5vh 15px;
+        padding: 0 10px;
     }
 
     .hero-title {
-        font-size: clamp(4rem, 14vh, 7rem);
-        margin-right: 15px;
-        line-height: 0.8;
+        font-size: clamp(2.5rem, 9vh, 4rem);
+    }
+
+    .interactive-area {
+        padding-right: 5px;
     }
 
     .smartphone {
-        width: 270px;
-        height: 550px;
+        width: 250px;
+        height: 520px;
         padding: 10px;
         border-radius: 35px;
     }
@@ -507,13 +509,17 @@ body {
     }
 
     .call-to-action {
-        margin-bottom: 15px;
-        left: -20px;
+        margin-bottom: 10px;
+        margin-right: 15px;
+    }
+    
+    .cta-text {
+        font-size: 2.2rem;
     }
 
     .cta-arrow {
-        transform: scale(0.55) rotate(45deg);
-        top: 20px;
-        right: -120px;
+        transform: scale(0.4) rotate(45deg);
+        top: 10px;
+        right: -80px;
     }
 }
