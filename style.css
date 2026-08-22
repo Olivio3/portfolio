@@ -458,8 +458,9 @@ body {
     }
 
     .hero-title {
-        font-size: 3.5rem;
+        font-size: clamp(4rem, 14vh, 7rem);
         margin-right: 15px;
+        line-height: 0.8;
     }
 
     .smartphone {
