@@ -83,4 +83,61 @@ document.addEventListener('DOMContentLoaded', () => {
             updateProgressUI();
         });
     }
+
+    // Services Data
+    const services = [
+        {
+            title: "UX/UI Design",
+            description: "Criação de interfaces intuitivas e esteticamente agradáveis, focadas na melhor experiência do usuário."
+        },
+        {
+            title: "Product Strategy",
+            description: "Alinhamento entre visão de negócios e necessidades reais do usuário para criar produtos viáveis."
+        },
+        {
+            title: "Design System",
+            description: "Construção de bibliotecas escaláveis de componentes para manter a consistência visual do produto."
+        },
+        {
+            title: "Auditoria Visual",
+            description: "Análise criteriosa de interfaces existentes para identificar gargalos de usabilidade e melhorias."
+        }
+    ];
+
+    function renderServices() {
+        const container = document.getElementById('cardsContainer');
+        if (!container) return;
+
+        services.forEach((service, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            card.innerHTML = `
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="/carta.webp" alt="Carta Misteriosa">
+                    </div>
+                    <div class="card-back">
+                        <h4>${service.title}</h4>
+                        <p>${service.description}</p>
+                    </div>
+                </div>
+            `;
+
+            card.addEventListener('click', () => {
+                if (card.classList.contains('is-flipped')) {
+                    card.classList.remove('is-flipped');
+                } else {
+                    document.querySelectorAll('.card.is-flipped').forEach(c => {
+                        c.classList.remove('is-flipped');
+                    });
+                    card.classList.add('is-flipped');
+                }
+            });
+
+            container.appendChild(card);
+        });
+    }
+
+    renderServices();
 });
