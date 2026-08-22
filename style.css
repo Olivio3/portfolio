@@ -391,60 +391,61 @@ body {
 
 @media (max-width: 900px) {
     .hero {
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: flex-start;
         align-items: center;
-        padding: 0 5%;
-        height: 100vh;
-        overflow: hidden;
+        padding: 5vh 5%;
+        height: auto;
+        min-height: 100svh;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .hero-title {
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
+        writing-mode: horizontal-tb;
+        transform: none;
         position: relative;
         bottom: auto;
         left: auto;
         margin: 0;
-        font-size: clamp(3rem, 8vh, 5rem);
+        margin-bottom: 5vh;
+        font-size: clamp(3rem, 12vw, 6rem);
         line-height: 1;
         z-index: 20;
         text-align: center;
-        width: auto;
+        width: 100%;
         animation: fadeIn 1.5s ease forwards;
     }
 
     .interactive-area {
-        flex: 1;
+        flex: none;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
-        align-items: flex-end;
-        padding: 0;
-        margin: 0;
-    }
-
-    .call-to-action {
-        order: 1;
+        align-items: center;
         position: relative;
-        margin: 0;
-        margin-bottom: 10px;
-        margin-right: 20px;
-        top: 0;
-        left: 0;
-        z-index: 50;
+        width: 100%;
+        padding: 0;
     }
 
     .smartphone {
-        order: 2;
         transform: translateY(0);
+        margin-left: 40px;
         animation: fadeIn 1s ease forwards;
     }
 
+    .call-to-action {
+        position: absolute;
+        top: 35%;
+        left: -10px;
+        margin: 0;
+        z-index: 50;
+    }
+
     .cta-arrow {
-        transform: scale(0.5) rotate(45deg);
-        top: 20px;
-        right: -80px;
+        transform: scale(0.6) rotate(15deg);
+        top: 30px;
+        right: -100px;
     }
     
     .smartphone:hover {
@@ -454,15 +455,16 @@ body {
 
 @media (max-width: 480px) {
     .hero {
-        padding: 0 10px;
+        padding: 5vh 10px;
     }
 
     .hero-title {
-        font-size: clamp(2.5rem, 9vh, 4rem);
+        font-size: clamp(2.5rem, 13vw, 4rem);
+        margin-right: 0;
     }
 
     .interactive-area {
-        padding-right: 5px;
+        padding-right: 0;
     }
 
     .smartphone {
@@ -470,6 +472,7 @@ body {
         height: 520px;
         padding: 10px;
         border-radius: 35px;
+        margin-left: 40px;
     }
     
     .phone-notch {
@@ -509,8 +512,10 @@ body {
     }
 
     .call-to-action {
-        margin-bottom: 10px;
-        margin-right: 15px;
+        margin-bottom: 0;
+        margin-right: 0;
+        top: 35%;
+        left: -15px;
     }
     
     .cta-text {
@@ -518,8 +523,8 @@ body {
     }
 
     .cta-arrow {
-        transform: scale(0.4) rotate(45deg);
-        top: 10px;
-        right: -80px;
+        transform: scale(0.45) rotate(15deg);
+        top: 15px;
+        right: -90px;
     }
 }
