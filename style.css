@@ -457,13 +457,16 @@ body {
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.card:hover {
-    transform: translateY(-15px) scale(1.02);
-}
+@media (hover: hover) {
+    .card:hover {
+        transform: translateY(-15px) scale(1.02);
+        z-index: 10;
+    }
 
-.cards-container:hover .card:not(:hover) {
-    opacity: 0.7;
-    filter: brightness(0.9);
+    .cards-container:hover .card:not(:hover) {
+        opacity: 0.7;
+        filter: brightness(0.9);
+    }
 }
 
 .card-inner {
@@ -626,7 +629,7 @@ body {
 
 @media (max-width: 480px) {
     .hero {
-        padding: 5vh 10px;
+        padding: 2vh 15px 5vh;
     }
 
     .hero-title {
@@ -642,11 +645,12 @@ body {
     }
 
     .smartphone {
-        width: 250px;
-        height: 520px;
-        padding: 10px;
-        border-radius: 35px;
-        margin-left: 40px;
+        width: 90vw;
+        max-width: 330px;
+        height: 640px;
+        padding: 12px;
+        border-radius: 40px;
+        margin-left: 0;
     }
     
     .phone-notch {
@@ -686,24 +690,7 @@ body {
     }
 
     .call-to-action {
-        margin-bottom: 0;
-        margin-right: 0;
-        top: 35%;
-        left: -10px;
-    }
-    
-    .cta-text {
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
-        font-size: 2rem;
-        margin: 0;
-    }
-
-    .cta-arrow {
-        position: absolute;
-        transform: scale(0.4) rotate(45deg);
-        top: 50px;
-        right: -70px;
+        display: none;
     }
 
     .services-frame {
@@ -712,23 +699,26 @@ body {
     }
 
     .cards-container {
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        gap: 20px;
-        padding-bottom: 20px;
-        padding-inline: 20px;
-        width: 100%;
-        max-width: none;
-    }
-    
-    .cards-container::-webkit-scrollbar {
-        display: none;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 0 15px;
     }
 
     .card {
-        flex: 0 0 75%;
-        scroll-snap-align: center;
+        width: 100%;
+    }
+
+    .card-back {
+        padding: 15px 10px;
+    }
+
+    .card-back h4 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .card-back p {
+        font-size: 12px;
     }
 }
