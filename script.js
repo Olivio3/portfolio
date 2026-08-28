@@ -202,20 +202,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Services Data
     const services = [
         {
-            title: "UX/UI Design",
-            description: "Criação de interfaces intuitivas e esteticamente agradáveis, focadas na melhor experiência do usuário."
-        },
-        {
-            title: "Product Strategy",
+            title: "Estratégia de Produto",
             description: "Alinhamento entre visão de negócios e necessidades reais do usuário para criar produtos viáveis."
         },
         {
-            title: "Design System",
-            description: "Construção de bibliotecas escaláveis de componentes para manter a consistência visual do produto."
+            title: "Posicionamento Digital",
+            description: "Fortaleça sua presença online através de Google Meu Negócio, Landing Pages de alta conversão e Instagram."
         },
         {
-            title: "Auditoria Visual",
-            description: "Análise criteriosa de interfaces existentes para identificar gargalos de usabilidade e melhorias."
+            title: "Landing Page",
+            description: "Criação de páginas modernas e de alta conversão, pensadas estrategicamente para transformar visitantes em clientes."
+        },
+        {
+            title: "UX/UI Design",
+            description: "Criação de interfaces intuitivas e esteticamente agradáveis, focadas na melhor experiência do usuário."
         }
     ];
 
@@ -240,14 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
             card.addEventListener('click', () => {
-                if (card.classList.contains('is-flipped')) {
-                    card.classList.remove('is-flipped');
-                } else {
-                    document.querySelectorAll('.card.is-flipped').forEach(c => {
-                        c.classList.remove('is-flipped');
-                    });
-                    card.classList.add('is-flipped');
-                }
+                card.classList.toggle('is-flipped');
             });
 
             container.appendChild(card);
@@ -255,4 +248,140 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     renderServices();
+
+    // Project Details Modal Data & Handlers
+    const projectsData = {
+        gmn: {
+            category: "Posicionamento Digital",
+            title: "Google Meu Negócio & SEO Local — Barbearia Boss Cut",
+            fullDesc: "Estratégia completa de posicionamento no Google Meu Negócio e Google Maps desenvolvida para a Barbearia Boss Cut, localizada em Suzano/SP. O projeto estruturou o perfil profissional com fotos de alta qualidade, otimização de categorias, palavras-chave locais de alta intenção, informações completas de localização e canais diretos para agendamento via WhatsApp e ligações.",
+            highlights: [
+                "98 interações diretas realizadas no Perfil da Empresa (solicitações de rotas, ligações e agendamentos)",
+                "+250 visualizações orgânicas no Perfil da Empresa conquistadas na região",
+                "65% dos acessos originados diretamente de smartphones (Pesquisa Google e Google Maps)"
+            ],
+            tags: ["Google Maps", "SEO Local", "Barbearia Boss Cut", "Conversão", "Suzano SP"],
+            images: [
+                { src: "google/bosscut.jpeg", caption: "Perfil verificado e otimizado da Barbearia Boss Cut no Google Maps" },
+                { src: "google/dadosboss.jpeg", caption: "Métricas de alcance: visualizações e distribuição por dispositivos" }
+            ]
+        },
+        lp: {
+            category: "Landing Page",
+            title: "Landing Page de Alta Conversão para Serviços",
+            fullDesc: "Desenvolvimento de uma Landing Page com narrativa orientada à conversão (Copywriting + UX). A página foi pensada para guiar o visitante de forma intuitiva, destacando diferenciais, provas sociais e chamadas para ação claras que aumentam o volume de leads qualificados.",
+            highlights: [
+                "Arquitetura focada em clareza, confiança e conversão rápida",
+                "Carregamento ultrarrápido com código limpo e responsivo",
+                "Experiência mobile-first impecável para usuários de smartphones"
+            ],
+            tags: ["UI Design", "Copywriting", "Alta Conversão", "Mobile First", "Performance"],
+            images: [
+                { src: "fundo2.webp", caption: "Design moderno e fluido" },
+                { src: "carta.webp", caption: "Identidade marcante e elementos visuais" }
+            ]
+        },
+        discovery: {
+            category: "Estratégia de Produto",
+            title: "Discovery & Validação de Soluções Digitais",
+            fullDesc: "Condução de discovery estratégico para estruturação e validação de produtos digitais. O processo engloba mapeamento da jornada do usuário, identificação de gargalos operacionais, priorização de funcionalidades essenciais (MVP) e alinhamento das metas de negócio com a experiência do cliente.",
+            highlights: [
+                "Mapeamento detalhado de dores e oportunidades com foco no usuário",
+                "Definição de escopo enxuto para rápido lançamento e validação",
+                "Estruturação de métricas de sucesso e usabilidade"
+            ],
+            tags: ["Product Strategy", "Mapeamento UX", "Métricas", "Discovery", "Validação"],
+            images: [
+                { src: "fundo.webp", caption: "Exploração e descoberta de novas oportunidades" },
+                { src: "fundo2.webp", caption: "Processo criativo e refinamento contínuo" }
+            ]
+        },
+        uxui: {
+            category: "UX/UI Design",
+            title: "Design de Interface & Experiência do Usuário",
+            fullDesc: "Criação completa da interface do usuário combinando elegância visual, usabilidade refinada e prototipagem interativa. Foi desenvolvido um Design System escalável com biblioteca de componentes reutilizáveis, garantindo consistência e agilidade na evolução contínua da aplicação.",
+            highlights: [
+                "Interfaces intuitivas com alto contraste e acessibilidade",
+                "Design System escalável para manter a consistência do produto",
+                "Prototipagem interativa de alta fidelidade para validação"
+            ],
+            tags: ["Figma", "Prototipagem", "Design System", "User Interface", "Acessibilidade"],
+            images: [
+                { src: "carta.webp", caption: "Direção visual e identidade de interface" },
+                { src: "fundo.webp", caption: "Consistência de componentes e telas" }
+            ]
+        }
+    };
+
+    const projectModal = document.getElementById('projectModal');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalGallery = document.getElementById('modalGallery');
+    const modalFullDesc = document.getElementById('modalFullDesc');
+    const modalHighlights = document.getElementById('modalHighlights');
+    const modalTags = document.getElementById('modalTags');
+
+    function openProjectModal(projectId) {
+        const data = projectsData[projectId];
+        if (!data || !projectModal) return;
+
+        modalCategory.textContent = data.category;
+        modalTitle.textContent = data.title;
+        modalFullDesc.textContent = data.fullDesc;
+
+        // Highlights
+        modalHighlights.innerHTML = data.highlights.map(h => `<li>${h}</li>`).join('');
+
+        // Tags
+        modalTags.innerHTML = data.tags.map(t => `<span class="project-modal-tag">${t}</span>`).join('');
+
+        // Gallery
+        if (data.images && data.images.length > 0) {
+            modalGallery.innerHTML = data.images.map(img => `
+                <div class="project-modal-image-item">
+                    <img src="${img.src}" alt="${data.title}">
+                    ${img.caption ? `<span class="project-modal-caption">${img.caption}</span>` : ''}
+                </div>
+            `).join('');
+            modalGallery.style.display = 'grid';
+        } else {
+            modalGallery.style.display = 'none';
+        }
+
+        projectModal.classList.add('is-active');
+        projectModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal() {
+        if (!projectModal) return;
+        projectModal.classList.remove('is-active');
+        projectModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.project-card').forEach(card => {
+        const id = card.dataset.projectId;
+        card.addEventListener('click', () => {
+            openProjectModal(id);
+        });
+
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openProjectModal(id);
+            }
+        });
+    });
+
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeProjectModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeProjectModal);
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && projectModal && projectModal.classList.contains('is-active')) {
+            closeProjectModal();
+        }
+    });
 });
