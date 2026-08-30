@@ -267,19 +267,20 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         lp: {
-            category: "Landing Page",
-            title: "Landing Page de Alta Conversão para Serviços",
-            fullDesc: "Desenvolvimento de uma Landing Page com narrativa orientada à conversão (Copywriting + UX). A página foi pensada para guiar o visitante de forma intuitiva, destacando diferenciais, provas sociais e chamadas para ação claras que aumentam o volume de leads qualificados.",
+            category: "Landing Page & Conversão",
+            title: "Landing Page de Alta Conversão — Workshop de Geoprocessamento & Perícia",
+            fullDesc: "Desenvolvimento de Landing Page de alta conversão para a Ambiental Pro, com foco nas matrículas para o Workshop de Geoprocessamento e Perícia Ambiental (com aplicação prática em QGIS). A página combina narrativa persuasiva de alto impacto, formulários de captura com validação internacional de telefone, modais inteligentes, cronograma completo de aulas, prova social e rastreamento avançado de conversões via Meta Pixel e Google Tag Manager.",
             highlights: [
-                "Arquitetura focada em clareza, confiança e conversão rápida",
-                "Carregamento ultrarrápido com código limpo e responsivo",
-                "Experiência mobile-first impecável para usuários de smartphones"
+                "Arquitetura focada em autoridade técnica, clareza da oferta e máxima conversão",
+                "Formulário inteligente com validação internacional de telefone (intl-tel-input)",
+                "Integração analítica completa com Meta Pixel (Event ID), Google Analytics 4 e GTM",
+                "Design moderno em dark mode com micro-interações, acordeões interativos e alta performance"
             ],
-            tags: ["UI Design", "Copywriting", "Alta Conversão", "Mobile First", "Performance"],
-            images: [
-                { src: "fundo2.webp", caption: "Design moderno e fluido" },
-                { src: "carta.webp", caption: "Identidade marcante e elementos visuais" }
-            ]
+            tags: ["Landing Page", "Ambiental Pro", "UI/UX Design", "Copywriting", "Alta Conversão", "QGIS & Perícia"],
+            previewUrl: "ambientalpro/index.html",
+            previewDisplayUrl: "https://workshopgeopericia.ambientalpro.com.br",
+            liveUrl: "ambientalpro/index.html",
+            liveUrlText: "Acessar Landing Page Completa ↗"
         },
         discovery: {
             category: "Estratégia de Produto",
@@ -318,6 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalCloseBtn = document.getElementById('modalCloseBtn');
     const modalCategory = document.getElementById('modalCategory');
     const modalTitle = document.getElementById('modalTitle');
+    const modalPreview = document.getElementById('modalPreview');
     const modalGallery = document.getElementById('modalGallery');
     const modalFullDesc = document.getElementById('modalFullDesc');
     const modalHighlights = document.getElementById('modalHighlights');
@@ -337,7 +339,70 @@ document.addEventListener('DOMContentLoaded', () => {
         // Tags
         modalTags.innerHTML = data.tags.map(t => `<span class="project-modal-tag">${t}</span>`).join('');
 
-        // Gallery
+        // Live Site Preview (Browser Mockup with Desktop Scaling)
+        if (modalPreview) {
+            if (data.previewUrl) {
+                modalPreview.innerHTML = `
+                    <div class="browser-mockup">
+                        <div class="browser-mockup-header">
+                            <div class="browser-mockup-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-mockup-url">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                                <span>${data.previewDisplayUrl || data.previewUrl}</span>
+                            </div>
+                            <div class="browser-mockup-actions">
+                                <a href="${data.previewUrl}" target="_blank" rel="noopener noreferrer" class="browser-mockup-btn" title="Abrir em tela cheia">
+                                    <span>Abrir</span>
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="browser-mockup-body" id="mockupBody">
+                            <div class="browser-mockup-scaler" id="mockupScaler">
+                                <iframe src="${data.previewUrl}" title="Prévia do Site" loading="lazy"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                modalPreview.style.display = 'block';
+
+                const updateScale = () => {
+                    const body = document.getElementById('mockupBody');
+                    const scaler = document.getElementById('mockupScaler');
+                    if (body && scaler) {
+                        const width = body.clientWidth;
+                        if (width > 0) {
+                            const scale = width / 1280;
+                            scaler.style.transform = `scale(${scale})`;
+                            body.style.height = `${Math.round(820 * scale)}px`;
+                        }
+                    }
+                };
+
+                requestAnimationFrame(() => {
+                    updateScale();
+                    setTimeout(updateScale, 80);
+                    setTimeout(updateScale, 250);
+                });
+
+                window.removeEventListener('resize', updateScale);
+                window.addEventListener('resize', updateScale);
+            } else {
+                modalPreview.innerHTML = '';
+                modalPreview.style.display = 'none';
+            }
+        }
+
+        // Gallery (for projects without live preview)
         if (data.images && data.images.length > 0) {
             modalGallery.innerHTML = data.images.map(img => `
                 <div class="project-modal-image-item">
@@ -360,6 +425,10 @@ document.addEventListener('DOMContentLoaded', () => {
         projectModal.classList.remove('is-active');
         projectModal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        if (modalPreview) {
+            modalPreview.innerHTML = '';
+            modalPreview.style.display = 'none';
+        }
     }
 
     document.querySelectorAll('.project-card').forEach(card => {
